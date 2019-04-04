@@ -11,7 +11,9 @@
     "push": "git add * && git commit -m 'pub' && git push",
     "start:prod": "npm run build:prod && npm run http-server",
     "start": "ng serve -o --port 4279",
-    "test": "ng test"
+    "test": "ng test",
+    "build": "ng build",
+    "http-server": "http-server ./dist/angular-board/ -c-1 -p4271 -a localhost -o"
   },
   "private": true,
   "dependencies": {
