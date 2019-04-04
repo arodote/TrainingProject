@@ -12,8 +12,7 @@
     "start:prod": "npm run build:prod && npm run http-server",
     "start": "ng serve -o --port 4279",
     "test": "ng test",
-    "build": "ng build",
-    "http-server": "http-server ./dist/angular-board/ -c-1 -p4271 -a localhost -o"
+    "build": "ng build"
   },
   "private": true,
   "dependencies": {
