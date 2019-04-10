@@ -12,7 +12,9 @@
     "start:prod": "npm run build:prod && npm run http-server",
     "start": "ng serve -o --port 4279",
     "test": "ng test",
-    "build": "ng build"
+    "build": "ng build",
+    "update": "ng update --all",
+    "pull": "git pull origin master"
   },
   "private": true,
   "dependencies": {
