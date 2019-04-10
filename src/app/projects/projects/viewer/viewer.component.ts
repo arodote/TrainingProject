@@ -10,8 +10,10 @@ import { ActivatedRoute } from '@angular/router';
 export class ViewerComponent implements OnInit {
   public listPro = environment.projects;
   public projId = '';
-  constructor(activateRoute: ActivatedRoute) {
-    this.projId = activateRoute.snapshot.params['id'];
+  constructor(private activateRoute: ActivatedRoute) {
+    this.activateRoute.params.subscribe(routeParams => {
+      this.projId = activateRoute.snapshot.params.id;
+    });
   }
 
   ngOnInit() {}
