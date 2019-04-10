@@ -1,0 +1,10 @@
+<p>
+List of the projects:
+ <li *ngFor="let pr of projects">
+    <span>{{ pr.id }})<a routerLink="viewer/{{ pr.id }}" class="button"> <span> {{ pr.name }}</span> </a>
+  </span>
+      </li>
+
+      <a routerLink="new" class="button"> <span> New</span> </a>
+   </p>
+   <router-outlet></router-outlet>
