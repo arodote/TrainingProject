@@ -11,6 +11,8 @@ export class NewComponent implements OnInit {
   constructor() {}
   ngOnInit() {}
   public saveNewProject() {
-    environment.projects.push(this.project);
+
+    environment.projects.push( this.project );
+    this.project = { id: environment.projects.length, name: '' };
   }
 }
