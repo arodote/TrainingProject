@@ -1,10 +1,12 @@
-<p>
+<div style='overflow: scroll;height: 350px;'>
 List of the projects:
+<br>
  <li *ngFor="let pr of projects">
-    <span>{{ pr.id }})<a routerLink="viewer/{{ pr.id }}" class="button"> <span> {{ pr.name }}</span> </a>
+    <span>{{ pr.id }})<a routerLink="viewer/{{ pr.id }}" style='background-color: wheat' class="button"> <span> {{ pr.name }}</span> </a>
   </span>
       </li>
 
-      <a routerLink="new" class="button"> <span> New</span> </a>
-   </p>
+
+    </div>
+    <a routerLink="new" class="button" style='background-color:wheat'> <span> New</span> </a>
    <router-outlet></router-outlet>

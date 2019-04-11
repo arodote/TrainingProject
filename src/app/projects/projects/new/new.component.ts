@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../../environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new',
@@ -8,11 +9,17 @@ import { environment } from '../../../../environments/environment';
 })
 export class NewComponent implements OnInit {
   public project = { id: environment.projects.length, name: '' };
-  constructor() {}
+  public claseError = 'hidden';
+  constructor(private router: Router) {}
   ngOnInit() {}
   public saveNewProject() {
-
-    environment.projects.push( this.project );
+    if (this.project.name == '') {
+      this.claseError = '';
+      return;
+    }
+    environment.projects.push(this.project);
     this.project = { id: environment.projects.length, name: '' };
+    this.claseError = 'hidden';
+    this.router.navigateByUrl('/projects');
   }
 }

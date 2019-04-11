@@ -1,6 +1,5 @@
-<form>
-    <fieldset>
-      <legend>Contact Form</legend>
+<form style='background: wheat; border-color: lightgray'>
+      <legend>New project</legend>
       <section>
         <label for="name">Name</label>
         <input
@@ -10,6 +9,8 @@
           placeholder="Project name"
         />
       </section>
-    </fieldset>
-    <input value="Save" type="submit" (click)="saveNewProject()" />
+      <p class={{claseError}} style='color: red'>Please introduce a name for your project.</p>
+      <input value="Save" style='background-color: lightgray; border-color: lightgray' type="submit" (click)="saveNewProject()" />
+
+
        </form>
