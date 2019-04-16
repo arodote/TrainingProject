@@ -4,6 +4,7 @@ import { ProjectsComponent } from './projects/projects.component';
 import { NewComponent } from './projects/new/new.component';
 import { ViewerComponent } from './projects/viewer/viewer.component';
 import { viewParentEl } from '@angular/core/src/view/util';
+import { DashboardComponent } from './projects/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,11 @@ const routes: Routes = [
       {
         path: 'new',
         component: NewComponent
-      }
+      }, {
+      path: '',
+      component: DashboardComponent,
+      outlet: 'dashboard'
+    }
     ]
   }
 ];

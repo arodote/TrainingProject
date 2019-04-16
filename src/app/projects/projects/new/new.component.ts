@@ -12,10 +12,17 @@ export class NewComponent implements OnInit {
   public claseError = 'hidden';
   constructor(private router: Router) {}
   ngOnInit() {}
-  public saveNewProject() {
+  public onNew() {
     if (this.project.name == '') {
       this.claseError = '';
       return;
+    }
+    for (let index = 0; index < environment.projects.length; index++) {
+      if (this.project.name==environment.projects[index].name) {
+        this.claseError = '';
+        return;
+      }
+
     }
     environment.projects.push(this.project);
     this.project = { id: environment.projects.length, name: '' };

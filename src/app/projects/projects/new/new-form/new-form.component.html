@@ -1,3 +1,16 @@
-<p>
-  new-form works!
-</p>
+<form style='background: wheat; border-color: lightgray'>
+  <legend>New project</legend>
+  <section>
+    <label for="name">Name</label>
+    <input
+      name="name"
+      type="text"
+      [(ngModel)]="project.name"
+      placeholder="Project name"
+    />
+  </section>
+  <p class={{claseError}} style='color: red'>Please introduce a different name for your project.</p>
+  <input value="New" style='background-color: lightgray; border-color: lightgray' type="submit" (click)="new.emit()" />
+
+
+   </form>
