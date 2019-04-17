@@ -1,4 +1,6 @@
-<router-outlet name='dashboard'></router-outlet>
+<app-filter-form
+(search)="onSearch($event)"></app-filter-form>
+
 <br>
 <div style="width: 100%;">
 <app-projects-list style="width: 49%; display: inline-block" [projects]="projects"></app-projects-list>

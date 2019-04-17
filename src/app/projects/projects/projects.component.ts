@@ -12,4 +12,7 @@ export class ProjectsComponent implements OnInit {
   constructor() {
       }
   ngOnInit() {}
+  public onSearch(casa: { id: number, name: String }) {
+    console.log( "IT WORKS" + casa.id + casa.name );
+  }
 }

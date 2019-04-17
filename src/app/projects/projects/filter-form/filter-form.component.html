@@ -1,3 +1,22 @@
-<p>
-  filter-form works!
-</p>
+<form style='background: wheat; border-color: lightgray'>
+  <legend>New project</legend>
+  <section>
+    <label for="id">Id</label>
+    <input
+      name="id"
+      type="text"
+      [(ngModel)]="project.id"
+      placeholder="Project id"
+    />
+    <label for="name">Name</label>
+    <input
+      name="name"
+      type="text"
+      [(ngModel)]="project.name"
+      placeholder="Project name"
+    />
+  </section>
+  <input value="Search" style='background-color: lightgray; border-color: lightgray' type="submit" (click)="search.emit(project)" />
+
+
+   </form>
