@@ -1,13 +1,5 @@
 <router-outlet name='dashboard'></router-outlet>
-<div style='overflow: scroll;height: 350px;'>
-List of the projects:
 <br>
- <li *ngFor="let pr of projects">
-    <span>{{ pr.id }})<a routerLink="viewer/{{ pr.id }}" style='background-color: wheat' class="button"> <span> {{ pr.name }}</span> </a>
-  </span>
-      </li>
-
-
-    </div>
-    <a routerLink="new" class="button" style='background-color:wheat'> <span> New</span> </a>
-   <router-outlet></router-outlet>
+<div style="width: 100%;">
+<app-projects-list style="width: 49%; display: inline-block" [projects]="projects"></app-projects-list>
+<router-outlet></router-outlet></div>
