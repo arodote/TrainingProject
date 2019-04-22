@@ -1,11 +1,20 @@
-<div style='overflow: scroll;height: 350px;'>
+<div >
   List of the projects:
-  <br>
-   <li *ngFor="let pr of projects">
-      <span>{{ pr.id }})<a routerLink="viewer/{{ pr.id }}" style='background-color: wheat' class="button"> <span> {{ pr.name }}</span> </a>
-    </span>
-        </li>
+  <br><br>
+  <table style='max-height: 350px' class="striped" >
+      <thead>
+          <tr>
+            <th >Id</th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody>
+    <tr *ngFor="let pr of projects">
+      <td>{{pr.id}}</td>
+      <td><a routerLink="viewer/{{ pr.id }}" style='background-color: wheat; display: inline;' class="button"> <span> {{ pr.name }}</span> </a></td>
 
-
+    </tr>
+  </tbody>
+  </table>
       </div>
       <a routerLink="new" class="button" style='background-color:wheat'> <span> New</span> </a>
