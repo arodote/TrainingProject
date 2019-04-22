@@ -6,7 +6,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./filter-form.component.css']
 })
 export class FilterFormComponent implements OnInit {
-  public crit: String;
+  public crit: string;
   public project: { id: number, name: String };
   @Output() public search = new EventEmitter();
   @Output() public reset = new EventEmitter();
