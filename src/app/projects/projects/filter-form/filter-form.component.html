@@ -1,22 +1,35 @@
 <form style='background: wheat; border-color: lightgray'>
-  <legend>New project</legend>
+  <legend>Find project</legend>
   <section>
-    <label for="id">Id</label>
-    <input
-      name="id"
-      type="text"
-      [(ngModel)]="project.id"
-      placeholder="Project id"
-    />
-    <label for="name">Name</label>
-    <input
-      name="name"
-      type="text"
-      [(ngModel)]="project.name"
-      placeholder="Project name"
-    />
+    <label for="Critera">Criteria:</label>
+     <select name="crit" [(ngModel)]="crit">
+       <option value="id">Id</option>
+       <option value="name">Name</option>
+      </select>
+
+      <span *ngIf="crit =='id';">
+          <label for="id">Id</label>
+          <input
+            name="id"
+            type="text"
+            [(ngModel)]="project.id"
+            placeholder="Project id"
+          />
+      </span>
+        <span *ngIf="crit =='name';">
+            <label for="name">Name</label>
+            <input
+              name="name"
+              type="text"
+              [(ngModel)]="project.name"
+              placeholder="Project name"
+            />
+        </span>
+
+
   </section>
-  <input value="Search" style='background-color: lightgray; border-color: lightgray' type="submit" (click)="search.emit(project)" />
+  <input value="Search" style='background-color: lightgray; border-color: lightgray' type="submit" (click)="search.emit({project:project, crit:crit})" />
+  <input value="Reset" style='background-color: lightgray; border-color: lightgray' type="submit" (click)="res();reset.emit()" />
 
 
    </form>
