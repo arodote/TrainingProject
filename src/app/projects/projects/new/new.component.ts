@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from '../../../../environments/environment';
 import { Router } from '@angular/router';
+import { environment } from '../../../../environments/environment';
+import { ProjectsService } from '../../projects.service';
 
 @Component({
   selector: 'app-new',
@@ -10,23 +11,16 @@ import { Router } from '@angular/router';
 export class NewComponent implements OnInit {
   public project = { id: environment.projects.length, name: '' };
   public claseError = 'hidden';
-  constructor(private router: Router) {}
+  constructor(private router: Router, private projectsService: ProjectsService) {}
   ngOnInit() {}
   public onNew() {
-    if (this.project.name == '') {
+    if (this.projectsService.newProject(this.project)) {
+      this.project = { id: environment.projects.length, name: '' };
+      this.claseError = 'hidden';
+      this.router.navigateByUrl('/projects');
+    } else {
       this.claseError = '';
-      return;
     }
-    for (let index = 0; index < environment.projects.length; index++) {
-      if (this.project.name==environment.projects[index].name) {
-        this.claseError = '';
-        return;
-      }
-
-    }
-    environment.projects.push(this.project);
-    this.project = { id: environment.projects.length, name: '' };
-    this.claseError = 'hidden';
-    this.router.navigateByUrl('/projects');
+    return;
   }
 }
