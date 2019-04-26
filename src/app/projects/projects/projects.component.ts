@@ -8,8 +8,11 @@ import { ProjectsService } from '../projects.service';
 })
 export class ProjectsComponent implements OnInit {
   public projects$: any;
+  private cont;
+  private contUpdated;
 
   constructor(private projectsService: ProjectsService) {
+    this.cont = 0;
     this.projects$ = this.projectsService.getProjectList();
   }
   ngOnInit() {}
@@ -19,6 +22,21 @@ export class ProjectsComponent implements OnInit {
     }
     return;
   }
+  ngDoCheck() {
+    this.projectsService.getProjectListSize().subscribe(response => {
+      if ( response != this.contUpdated ) {
+        console.log("asd")
+        this.contUpdated = response;
+      }
+    });
+    console.log(this.cont + '-.-' + this.contUpdated);
+    if ( this.cont != this.contUpdated ) {
+      console.log( "ENTRAS" );
+      this.projectsService.getProjectListSize().subscribe(response => (this.cont = response));
+      this.projects$ = this.projectsService.getProjectList();
+    }
+  }
+
   public onReset() {
     this.projects$ = this.projectsService.getProjectList();
     return;

@@ -15,8 +15,9 @@ export class ViewerComponent implements OnInit {
 
     this.activateRoute.params.subscribe(routeParams => {
       this.projId = activateRoute.snapshot.params.id;
+      this.projects$ = this.projectsService.getProjectListById( this.projId );
     } );
-    this.projects$ = this.projectsService.getProjectListById(this.projId);
+
   }
 
   ngOnInit() {}
