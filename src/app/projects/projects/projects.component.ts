@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { environment } from '../../../environments/environment';
 import { ProjectsService } from '../projects.service';
 
 @Component({
@@ -8,18 +7,20 @@ import { ProjectsService } from '../projects.service';
   styleUrls: ['./projects.component.css']
 })
 export class ProjectsComponent implements OnInit {
-  public projects = environment.projects;
+  public projects$: any;
 
-  constructor(private projectsService: ProjectsService) {}
+  constructor(private projectsService: ProjectsService) {
+    this.projects$ = this.projectsService.getProjectList();
+  }
   ngOnInit() {}
   public onSearch(p: any) {
     if (p.crit != null && p.crit != '') {
-      this.projects = this.projectsService.findProject(p);
+      this.projects$ = this.projectsService.findProject(p);
     }
     return;
   }
   public onReset() {
-    this.projects = environment.projects;
+    this.projects$ = this.projectsService.getProjectList();
     return;
   }
 }

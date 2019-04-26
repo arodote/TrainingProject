@@ -1,4 +1,7 @@
 <u>Project viewer</u>
 <p>
-  You are currently watching the project number <mark> {{projId}}</mark> with the name <mark>{{listPro[projId].name}}</mark>
+  You are currently watching the project number <mark> {{projId}}</mark> with the name
+  <mark *ngFor="let pr of listPro | async">
+    {{pr.name}}
+  </mark>
 </p>

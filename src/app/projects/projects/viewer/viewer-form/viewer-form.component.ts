@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./viewer-form.component.css']
 })
 export class ViewerFormComponent implements OnInit {
-  @Input() public listPro: {id:number, name:string};
+  @Input() public listPro;
   @Input() public projId: string;
   constructor() { }
 

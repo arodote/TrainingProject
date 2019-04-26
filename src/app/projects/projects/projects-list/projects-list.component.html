@@ -9,7 +9,7 @@
           </tr>
         </thead>
         <tbody>
-    <tr *ngFor="let pr of projects">
+    <tr *ngFor="let pr of projects | async">
       <td>{{pr.id}}</td>
       <td><a routerLink="viewer/{{ pr.id }}" style='background-color: wheat; display: inline;' class="button"> <span> {{ pr.name }}</span> </a></td>
 

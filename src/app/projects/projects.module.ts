@@ -10,10 +10,11 @@ import { NewFormComponent } from './projects/new/new-form/new-form.component';
 import { ViewerFormComponent } from './projects/viewer/viewer-form/viewer-form.component';
 import { ProjectsListComponent } from './projects/projects-list/projects-list.component';
 import { FilterFormComponent } from './projects/filter-form/filter-form.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [ProjectsComponent, ViewerComponent, NewComponent, NewFormComponent, ViewerFormComponent, ProjectsListComponent, FilterFormComponent],
-  imports: [
+  imports: [HttpClientModule,
     CommonModule,
     ProjectsRoutingModule,
     FormsModule

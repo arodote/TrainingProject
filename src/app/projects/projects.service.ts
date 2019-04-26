@@ -1,18 +1,23 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectsService {
   private api = 'https://api-base.herokuapp.com/api/pub/projects';
-  constructor() {}
+  public projectListObs$: Observable<any> = null;
+  constructor(private httpClient: HttpClient) {}
 
   public findProject(p: any) {
     if (p.crit == 'id') {
-      return environment.projects.filter(pr => pr.id == p.project.id);
+      this.projectListObs$ = this.httpClient.get(this.api).pipe(map(this.transformData));
+      return this.projectListObs$.pipe(map(pr => pr.filter(pr => pr.id == p.project.id)));
     } else if (p.crit == 'name') {
-      return environment.projects.filter(pr => pr.name.includes(p.project.name));
+      this.projectListObs$ = this.httpClient.get(this.api).pipe(map(this.transformData));
+      return this.projectListObs$.pipe(map(pr => pr.filter(pr => pr.name.includes(p.project.name))));
     }
   }
 
@@ -20,12 +25,22 @@ export class ProjectsService {
     if (p.name == '') {
       return false;
     }
-    for (let index = 0; index < environment.projects.length; index++) {
-      if (p.name == environment.projects[index].name) {
-        return false;
-      }
-    }
-    environment.projects.push(p);
+    this.httpClient.post(this.api, p).subscribe();
     return true;
+  }
+
+  public getProjectList() {
+    this.projectListObs$ = this.httpClient.get(this.api).pipe(map(this.transformData));
+    return this.projectListObs$;
+  }
+
+  public getProjectListById(id: any) {
+    this.projectListObs$ = this.httpClient.get(this.api).pipe(map(this.transformData));
+    return this.projectListObs$.pipe(map(pr => pr.filter(pr => pr.id == id)));
+  }
+
+  private transformData(pList) {
+    pList.forEach(fila => (fila.id = fila._id));
+    return pList;
   }
 }
