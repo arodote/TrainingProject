@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { environment } from '../../../../environments/environment';
 import { ProjectsService } from '../../projects.service';
 
 @Component({
@@ -9,13 +8,13 @@ import { ProjectsService } from '../../projects.service';
   styleUrls: ['./new.component.css']
 })
 export class NewComponent implements OnInit {
-  public project = { id: environment.projects.length, name: '' };
+  public project = { id: '', name: '' };
   public claseError = 'hidden';
   constructor(private router: Router, private projectsService: ProjectsService) {}
   ngOnInit() {}
   public onNew() {
     if (this.projectsService.newProject(this.project)) {
-      this.project = { id: environment.projects.length, name: '' };
+      this.project = { id: '', name: '' };
       this.claseError = 'hidden';
       this.router.navigateByUrl('/projects');
     } else {

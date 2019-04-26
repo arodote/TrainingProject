@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators';
 export class ProjectsService {
   private api = 'https://api-base.herokuapp.com/api/pub/projects';
   public projectListObs$: Observable<any> = null;
+  public projectListLengthObs$: Observable<any> = null;
   constructor(private httpClient: HttpClient) {}
 
   public findProject(p: any) {
@@ -42,5 +43,10 @@ export class ProjectsService {
   private transformData(pList) {
     pList.forEach(fila => (fila.id = fila._id));
     return pList;
+  }
+
+  public getProjectListSize() {
+    this.projectListLengthObs$ = this.httpClient.get(this.api).pipe(map((p: any) => p.length));
+    return this.projectListLengthObs$;
   }
 }
