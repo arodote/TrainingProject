@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class NotifStoreService {
-  private lastUrl$ = new BehaviorSubject<any>([]);
+  private lastUrl$ = new BehaviorSubject<any>('');
 
   constructor() {}
 

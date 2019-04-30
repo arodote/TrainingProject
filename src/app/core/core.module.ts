@@ -5,7 +5,6 @@ import { HeaderComponent } from './layout/header/header.component';
 import { MainComponent } from './layout/main/main.component';
 import { FooterComponent } from './layout/footer/footer.component';
 import { RouterModule } from '@angular/router';
-import { NotifStoreService } from '../projects/notif-store.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuditInterceptorService } from '../projects/audit-interceptor.service';
 
