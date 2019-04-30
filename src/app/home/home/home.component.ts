@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
   public numProjects;
   constructor(private projectsService: ProjectsService) {
     this.numProjects = this.projectsService.getProjectListSize();
-  }
+      }
 
   ngOnInit() {}
 }
