@@ -1,23 +1,38 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { ProjectsRoutingModule } from './projects-routing.module';
-import { ProjectsComponent } from './projects/projects.component';
-import { ViewerComponent } from './projects/viewer/viewer.component';
-import { NewComponent } from './projects/new/new.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { NewFormComponent } from './projects/new/new-form/new-form.component';
-import { ViewerFormComponent } from './projects/viewer/viewer-form/viewer-form.component';
-import { ProjectsListComponent } from './projects/projects-list/projects-list.component';
+import { AuditInterceptorService } from './audit-interceptor.service';
+import { NotifStoreService } from './notif-store.service';
+import { ProjectsRoutingModule } from './projects-routing.module';
+import { ProjectsService } from './projects.service';
 import { FilterFormComponent } from './projects/filter-form/filter-form.component';
-import { HttpClientModule } from '@angular/common/http';
+import { NewFormComponent } from './projects/new/new-form/new-form.component';
+import { NewComponent } from './projects/new/new.component';
+import { ProjectsListComponent } from './projects/projects-list/projects-list.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { ViewerFormComponent } from './projects/viewer/viewer-form/viewer-form.component';
+import { ViewerComponent } from './projects/viewer/viewer.component';
 
 @NgModule({
-  declarations: [ProjectsComponent, ViewerComponent, NewComponent, NewFormComponent, ViewerFormComponent, ProjectsListComponent, FilterFormComponent],
-  imports: [HttpClientModule,
-    CommonModule,
-    ProjectsRoutingModule,
-    FormsModule
+  declarations: [
+    ProjectsComponent,
+    ViewerComponent,
+    NewComponent,
+    NewFormComponent,
+    ViewerFormComponent,
+    ProjectsListComponent,
+    FilterFormComponent
+  ],
+  imports: [HttpClientModule, CommonModule, ProjectsRoutingModule, FormsModule],
+  providers: [
+    ProjectsService,
+    NotifStoreService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuditInterceptorService,
+      multi: true
+    }
   ]
 })
-export class ProjectsModule { }
+export class ProjectsModule {}
