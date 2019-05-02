@@ -4,7 +4,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
@@ -41,9 +43,20 @@ import { ViewerComponent } from './projects/viewer/viewer.component';
     MatSortModule,
     MatButtonModule,
     MatIconModule,
-    MatBadgeModule
+    MatBadgeModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
-  exports: [MatTableModule, MatPaginatorModule, MatSortModule, MatButtonModule, MatIconModule, MatBadgeModule],
+  exports: [
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatButtonModule,
+    MatIconModule,
+    MatBadgeModule,
+    MatInputModule,
+    MatFormFieldModule
+  ],
   providers: [
     ProjectsService,
     NotifStoreService,

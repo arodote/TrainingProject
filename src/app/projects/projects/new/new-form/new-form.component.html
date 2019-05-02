@@ -1,13 +1,17 @@
-<form [formGroup]="form">
-  <legend>New project</legend>
-  <section>
-    <label for="name">Name</label>
-    <input name="name"
-      formControlName="name"
-      placeholder="Project name"
-      type="text"
-    />
-  </section>
+<div class="example-container  newformStyle">
+    <div class="newformTitleStyle">
+        <legend style="padding-top: 5px;">New project</legend>
+      </div>
+
+
+      <mat-label style="color: #3f51b5">Name: </mat-label>
+    <mat-form-field style="width: 75%" [formGroup]="form">
+        <input style="color: #3f51b5" matInput placeholder="Project name" formControlName="name">
+    </mat-form-field>
+
   <p style='color: red'>{{errorF}}</p>
-  <button (click)="new.emit()"  [disabled]="form.invalid">Save</button>
-</form>
+  <div class="example-button-row">
+    <button style="margin-bottom: 4px; color:#abafd6 " (click)="new.emit()" [disabled]="form.invalid" mat-raised-button color="primary"
+    >Save</button>
+ </div>
+</div>

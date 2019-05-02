@@ -1,3 +1,8 @@
 <div class="footer">
-    <div style="margin-top: 14px">Last connection to the API: {{ lastUrl$ | async}}</div>
-  </div>
+    <div style="margin-top: 14px">Last connection to the API:
+      <button class="easterEgg" (click)="openSnackBar()" >
+        {{ lastUrl$ | async}}
+      </button></div>
+
+      </div>
+

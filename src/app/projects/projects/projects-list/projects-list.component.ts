@@ -15,7 +15,6 @@ export class ProjectsListComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
   displayedColumns: string[] = ['id', 'name'];
   constructor() {
-    console.log(this.projects);
     //this.dataSource = new MatTableDataSource(this.projects);
   }
 

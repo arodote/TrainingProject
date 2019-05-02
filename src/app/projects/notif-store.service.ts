@@ -11,8 +11,7 @@ export class NotifStoreService {
 
   public msg$ = () => this.lastUrl$.asObservable();
 
-  public dispatch( url ) {
-    console.log( url );
+  public dispatch(url) {
     this.lastUrl$.next(url);
   }
 }

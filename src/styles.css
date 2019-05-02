@@ -1,4 +1,4 @@
-@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
 html,
 body {
@@ -13,4 +13,16 @@ body {
 .mat-tab-nav-bar.mat-accent .mat-ink-bar {
   background: black;
   height: 5px;
+}
+
+.basic-container {
+  padding: 30px;
+}
+
+.version-info {
+  font-size: 8pt;
+  float: right;
+}
+.mat-paginator-container {
+  height: 0px;
 }
