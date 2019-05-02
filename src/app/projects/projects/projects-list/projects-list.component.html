@@ -1,20 +1,24 @@
-<div >
-  List of the projects:
-  <br><br>
-  <table style='max-height: 350px' class="striped" >
-      <thead>
-          <tr>
-            <th >Id</th>
-            <th>Name</th>
-          </tr>
-        </thead>
-        <tbody>
-    <tr *ngFor="let pr of projects | async">
-      <td>{{pr.id}}</td>
-      <td><a routerLink="viewer/{{ pr.id }}" style='background-color: wheat; display: inline;' class="button"> <span> {{ pr.name }}</span> </a></td>
+<div class="example-container mat-elevation-z8" style="position: relative">
+    <table mat-table [dataSource]="projects | async" matSort>
+          List of the projects:
 
-    </tr>
-  </tbody>
-  </table>
-      </div>
-      <a routerLink="new" class="button" style='background-color:wheat'> <span> New</span> </a>
+          <ng-container matColumnDef="id">
+            <th [bgColor]="['primary']" mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+            <td mat-cell *matCellDef="let element" > {{element.id}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+            <td mat-cell *matCellDef="let element" [routerLink]="['viewer/',element.id]" routerLinkActive="router-link-active"> {{element.name}} </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons ></mat-paginator>
+        </div>
+
+        <div class="example-button-row">
+           <button mat-raised-button color="primary"
+           matBadge="!" matBadgePosition="after" matBadgeColor="accent"
+           routerLink="new">New</button>
+        </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProjectsService } from '../../projects.service';
 
@@ -8,18 +9,35 @@ import { ProjectsService } from '../../projects.service';
   styleUrls: ['./new.component.css']
 })
 export class NewComponent implements OnInit {
-  public project = { id: '', name: '' };
-  public claseError = 'hidden';
-  constructor(private router: Router, private projectsService: ProjectsService) {}
-  ngOnInit() {}
+  public formGroup: FormGroup;
+  constructor(private router: Router, private projectsService: ProjectsService, private formBuilder: FormBuilder) {}
+  ngOnInit() {
+    this.buildForm();
+  }
+
+  private buildForm() {
+    const maxNameLength = 25;
+    this.formGroup = this.formBuilder.group({
+      id: '',
+      name: ['', [Validators.required, Validators.maxLength(maxNameLength)]]
+    });
+  }
+
   public onNew() {
-    if (this.projectsService.newProject(this.project)) {
-      this.project = { id: '', name: '' };
-      this.claseError = 'hidden';
-      this.router.navigateByUrl('/projects');
-    } else {
-      this.claseError = '';
+    this.projectsService.newProject({ id: this.formGroup.get('id').value, name: this.formGroup.get('name').value });
+    this.router.navigateByUrl('/projects');
+  }
+
+  public getError(controlName: string): string {
+    let error = '';
+    const control = this.formGroup.get(controlName);
+    if (control.touched && control.errors != null) {
+      if (control.getError('required')) {
+        error = 'Please, type a name for the project.';
+      } else {
+        error = 'The name of the project shall not exceed 25 characters.';
+      }
     }
-    return;
+    return error;
   }
 }

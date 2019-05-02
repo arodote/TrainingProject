@@ -1,3 +1,4 @@
-<app-new-form [project]="project"
- [claseError]="claseError"
- (new)="onNew()"></app-new-form>
+<app-new-form
+[form]="formGroup"
+ (new)="onNew()"
+[errorF] = "getError('name')"></app-new-form>

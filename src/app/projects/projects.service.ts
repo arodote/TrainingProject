@@ -23,9 +23,6 @@ export class ProjectsService {
   }
 
   public newProject(p: any) {
-    if (p.name == '') {
-      return false;
-    }
     this.httpClient.post(this.api, p).subscribe();
     return true;
   }
@@ -40,23 +37,23 @@ export class ProjectsService {
     return this.projectListObs$.pipe(map(pr => pr.filter(pr => pr.id == id)));
   }
 
-  private transformData( pList ) {
-    if ( pList != null ) {
-      pList.forEach( fila => ( fila.id = fila._id ) );
+  private transformData(pList) {
+    if (pList != null) {
+      pList.forEach(fila => (fila.id = fila._id));
     }
-      return pList;
-
+    return pList;
   }
 
   public getProjectListSize() {
-    this.projectListLengthObs$ = this.httpClient.get( this.api ).pipe( map( ( p: any ) => {
-      if ( p == null ) {
-        return 0;
-      } else {
-        return p.length;
-     }
-
-    } ) );
+    this.projectListLengthObs$ = this.httpClient.get(this.api).pipe(
+      map((p: any) => {
+        if (p == null) {
+          return 0;
+        } else {
+          return p.length;
+        }
+      })
+    );
     return this.projectListLengthObs$;
   }
 }

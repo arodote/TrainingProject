@@ -1,16 +1,13 @@
-<form style='background: wheat; border-color: lightgray'>
+<form [formGroup]="form">
   <legend>New project</legend>
   <section>
     <label for="name">Name</label>
-    <input
-      name="name"
-      type="text"
-      [(ngModel)]="project.name"
+    <input name="name"
+      formControlName="name"
       placeholder="Project name"
+      type="text"
     />
   </section>
-  <p class={{claseError}} style='color: red'>Please introduce a different name for your project.</p>
-  <input value="Save" style='background-color: lightgray; border-color: lightgray' type="submit" (click)="new.emit()" />
-
-
-   </form>
+  <p style='color: red'>{{errorF}}</p>
+  <button (click)="new.emit()"  [disabled]="form.invalid">Save</button>
+</form>

@@ -1,7 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
 import { AuditInterceptorService } from './audit-interceptor.service';
 import { NotifStoreService } from './notif-store.service';
 import { ProjectsRoutingModule } from './projects-routing.module';
@@ -24,7 +30,20 @@ import { ViewerComponent } from './projects/viewer/viewer.component';
     ProjectsListComponent,
     FilterFormComponent
   ],
-  imports: [HttpClientModule, CommonModule, ProjectsRoutingModule, FormsModule],
+  imports: [
+    HttpClientModule,
+    CommonModule,
+    ProjectsRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatButtonModule,
+    MatIconModule,
+    MatBadgeModule
+  ],
+  exports: [MatTableModule, MatPaginatorModule, MatSortModule, MatButtonModule, MatIconModule, MatBadgeModule],
   providers: [
     ProjectsService,
     NotifStoreService,
