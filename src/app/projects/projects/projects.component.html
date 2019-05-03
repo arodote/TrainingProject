@@ -1,7 +1,10 @@
 <app-filter-form
-(search)="onSearch($event)"
+[form]="formGroup"
+(search)="onSearch()"
 (reset)="onReset()"
+[errorF] = "getError('name')"
 ></app-filter-form>
+
 
 <br>
 <div style="width: 100%;">

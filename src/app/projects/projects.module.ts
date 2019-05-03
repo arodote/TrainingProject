@@ -8,10 +8,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { AuditInterceptorService } from './audit-interceptor.service';
-import { NotifStoreService } from './notif-store.service';
 import { ProjectsRoutingModule } from './projects-routing.module';
 import { ProjectsService } from './projects.service';
 import { FilterFormComponent } from './projects/filter-form/filter-form.component';
@@ -45,7 +45,8 @@ import { ViewerComponent } from './projects/viewer/viewer.component';
     MatIconModule,
     MatBadgeModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSelectModule
   ],
   exports: [
     MatTableModule,
@@ -55,11 +56,11 @@ import { ViewerComponent } from './projects/viewer/viewer.component';
     MatIconModule,
     MatBadgeModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSelectModule
   ],
   providers: [
     ProjectsService,
-    NotifStoreService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuditInterceptorService,

@@ -1,33 +1,47 @@
-<form style='background: wheat; border-color: lightgray'>
-  <legend>Find project</legend>
-  <section>
-    <label for="Critera">Criteria:</label>
-     <select name="crit" [(ngModel)]="crit">
-       <option value="id">Id</option>
-       <option value="name">Name</option>
-      </select>
-
-      <span *ngIf="crit =='id';">
-          <label for="id">Id</label>
-          <input
-            name="id"
-            type="number"
-            [(ngModel)]="project.id"
-            placeholder="Project id"
-          />
-      </span>
-        <span *ngIf="crit =='name';">
-            <label for="name">Name</label>
-            <input
-              name="name"
-              type="text"
-              [(ngModel)]="project.name"
-              placeholder="Project name"
-            />
-        </span>
-  </section>
-  <input value="Search" style='background-color: lightgray; border-color: lightgray' type="submit" (click)="search.emit({project:project, crit:crit})" />
-  <input value="Reset" style='background-color: lightgray; border-color: lightgray' type="submit" (click)="res();reset.emit()" />
+<div class="example-container  newformStyle">
+  <div class="newformTitleStyle">
+        <legend style="padding-top: 5px;">Find project</legend>
+  </div>
 
 
-   </form>
+    <mat-label style="color: #3f51b5">
+      Criteria:
+    </mat-label>
+    <mat-form-field [formGroup]="form">
+    <mat-select formControlName="crit">
+      <mat-option value="id">
+        Id
+      </mat-option>
+      <mat-option  value="name">
+        Name
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+<br>
+  <span *ngIf="form.get('crit').value =='name';">
+      <mat-label style="color: #3f51b5">
+        Name:
+      </mat-label>
+    <mat-form-field style="width: 50%" [formGroup]="form">
+        <input style="color: #3f51b5" matInput placeholder="Project name" formControlName="name">
+    </mat-form-field>
+  </span>
+
+  <span *ngIf="form.get('crit').value=='id';">
+    <mat-label style="color: #3f51b5">
+      Id:
+    </mat-label>
+    <mat-form-field style="width: 50%" [formGroup]="form">
+        <input style="color: #3f51b5" matInput placeholder="Project id" formControlName="id">
+    </mat-form-field>
+  </span>
+
+  <p style='color: red'>{{errorF}}</p>
+  <div class="example-button-row">
+    <button style="margin-bottom: 4px; color:#abafd6; margin-right: 2%" (click)="search.emit()" [disabled]="form.invalid" mat-raised-button color="primary"
+    >Search</button>
+    <button style="margin-bottom: 4px; color:#abafd6 " (click)="res(); reset.emit()" mat-raised-button color="primary"
+    >Reset</button>
+
+ </div>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProjectsService } from '../projects.service';
 
 @Component({
@@ -8,34 +9,48 @@ import { ProjectsService } from '../projects.service';
 })
 export class ProjectsComponent implements OnInit {
   public projects$: any;
-  //private cont;
-  //private contUpdated;
+  public formGroup: FormGroup;
 
-  constructor(private projectsService: ProjectsService) {
+  constructor(private projectsService: ProjectsService, private formBuilder: FormBuilder) {
     //this.cont = 0;
     this.projects$ = this.projectsService.getProjectList();
   }
-  ngOnInit() {}
-  public onSearch(p: any) {
-    if (p.crit != null && p.crit != '') {
-      this.projects$ = this.projectsService.findProject(p);
+  ngOnInit() {
+    this.buildForm();
+  }
+
+  public onSearch() {
+    if (this.formGroup.get('crit').value != null && this.formGroup.get('crit').value != '') {
+      this.projects$ = this.projectsService.findProject({
+        crit: this.formGroup.get('crit').value,
+        id: this.formGroup.get('id').value,
+        name: this.formGroup.get('name').value
+      });
     }
     return;
   }
-  //ngDoCheck() {
-  //this.projectsService.getProjectListSize().subscribe(response => {
-  //if ( response != this.contUpdated ) {
-  //console.log("asd")
-  //this.contUpdated = response;
-  //}
-  //});
-  // console.log(this.cont + '-.-' + this.contUpdated);
-  // if ( this.cont != this.contUpdated ) {
-  //   console.log( "ENTRAS" );
-  //  this.projectsService.getProjectListSize().subscribe(response => (this.cont = response));
-  // this.projects$ = this.projectsService.getProjectList();
-  // }
-  //  }
+
+  private buildForm() {
+    const maxNameLength = 25;
+    this.formGroup = this.formBuilder.group({
+      id: '',
+      name: ['', Validators.maxLength(maxNameLength)],
+      crit: ''
+    });
+  }
+
+  public getError(controlName: string): string {
+    let error = '';
+    const control = this.formGroup.get(controlName);
+    if (control.touched && control.errors != null) {
+      if (control.getError('required')) {
+        error = 'Please, type a name for the project.';
+      } else {
+        error = 'The name of the project shall not exceed 25 characters.';
+      }
+    }
+    return error;
+  }
 
   public onReset() {
     this.projects$ = this.projectsService.getProjectList();

@@ -15,10 +15,10 @@ export class ProjectsService {
   public findProject(p: any) {
     if (p.crit == 'id') {
       this.projectListObs$ = this.httpClient.get(this.api).pipe(map(this.transformData));
-      return this.projectListObs$.pipe(map(pr => pr.filter(pr => pr.id == p.project.id)));
+      return this.projectListObs$.pipe(map(pr => pr.filter(pr => pr.id == p.id)));
     } else if (p.crit == 'name') {
       this.projectListObs$ = this.httpClient.get(this.api).pipe(map(this.transformData));
-      return this.projectListObs$.pipe(map(pr => pr.filter(pr => pr.name.includes(p.project.name))));
+      return this.projectListObs$.pipe(map(pr => pr.filter(pr => pr.name.includes(p.name))));
     }
   }
 
