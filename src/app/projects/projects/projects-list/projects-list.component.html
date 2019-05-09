@@ -1,6 +1,7 @@
-<div *ngIf="projects!=null" class="example-container mat-elevation-z8" style="position: relative;     margin-left: 2%;
+<div *ngIf="projects | async; let projects; else noProjects">
+<div class="example-container mat-elevation-z8" style="position: relative;     margin-left: 2%;
 border-radius: 8px;">
-    <table mat-table [dataSource]="projects | async" matSort>
+    <table mat-table [dataSource]="projects" matSort>
           List of the projects:
 
           <ng-container matColumnDef="id">
@@ -17,7 +18,8 @@ border-radius: 8px;">
         </table>
         <mat-paginator id="pagin" class="tablePagi" [pageSizeOptions]="[5, 10]" showFirstLastButtons ></mat-paginator>
         </div>
-
+      </div>
+      <ng-template #noProjects> <b>There are no projects.</b> </ng-template>
         <div class="example-button-row">
            <button style="color:#abafd6 " mat-raised-button color="primary"
            matBadge="!" matBadgePosition="after" matBadgeColor="accent"
